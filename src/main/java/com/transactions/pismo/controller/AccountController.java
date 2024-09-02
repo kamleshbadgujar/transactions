@@ -23,15 +23,15 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping
-    public ResponseEntity<Account> createAccount(@RequestBody Account accountRequest) {
+    @PostMapping("/v1/create")
+    public ResponseEntity<Account> createAccountv1(@RequestBody Account accountRequest) {
     	log.info("BEGIN :: AccountController.createAccount method accountRequest {}", accountRequest );
         Account account = accountService.createAccount(accountRequest);
         return ResponseEntity.ok(account);
     }
 
-    @GetMapping("/{accountId}")
-    public ResponseEntity<Account> getAccount(@PathVariable Long accountId) {
+    @GetMapping("/v1/{accountId}")
+    public ResponseEntity<Account> getAccountv1(@PathVariable Long accountId) {
     	log.info("BEGIN :: AccountController.createAccount method accountId {}", accountId );
         return accountService.getAccount(accountId)
                 .map(ResponseEntity::ok)

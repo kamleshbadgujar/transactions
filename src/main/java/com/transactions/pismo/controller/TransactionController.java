@@ -32,8 +32,8 @@ public class TransactionController {
     @Autowired
     private OperationTypeRepository operationTypeRepository;
 
-    @PostMapping
-    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionRequest transactionRequest) {
+    @PostMapping("/v1/initiate")
+    public ResponseEntity<Transaction> initiateTransactionv1(@RequestBody TransactionRequest transactionRequest) {
     	log.info("BEGIN :: TransactionController.createTransaction method transactionRequest {}", transactionRequest );
         Account account = accountService.getAccount(transactionRequest.getAccountId())
                 .orElseThrow(() -> new RuntimeException("Account not found"));
